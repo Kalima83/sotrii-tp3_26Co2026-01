@@ -1,0 +1,12 @@
+# Salida de compilación STM32CubeIDE / GCC
+/Debug/
+/Release/
+*.o
+*.d
+*.su
+*.cyclo
+*.elf
+*.map
+*.list
+*.hex
+*.bin
