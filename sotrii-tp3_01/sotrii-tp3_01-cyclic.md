@@ -41,19 +41,18 @@ Las condiciones de diseño para el tamaño de trama ($f$) bajo un Ejecutivo Cíc
     * $T_3$: $2(2) - \gcd(20,2) = 4 - 2 = 2 \le 20$ *(Cumple)*.
 
 #### Diagrama de Gantt (Hiperperíodo: 10 Tramas de 2 U)
-´´´
-Trama,Instante (U),Tareas Ejecutadas,Cómputo Usado / f (2 U)
-F0,[0  - 2),T1 (1U) + T2 (1U),2 U / 2 U
-F1,[2  - 4),T1 (1U) + T3_1 (1U),2 U / 2 U
-F2,[4  - 6),T1 (1U) + T2 (1U),2 U / 2 U
-F3,[6  - 8),T1 (1U),1 U / 2 U
-F4,[8  - 10),T1 (1U) + T2 (1U),2 U / 2 U
-F5,[10 - 12),T1 (1U),1 U / 2 U
-F6,[12 - 14),T1 (1U) + T2 (1U),2 U / 2 U
-F7,[14 - 16),T1 (1U),1 U / 2 U
-F8,[16 - 18),T1 (1U) + T2 (1U),2 U / 2 U
-F9,[18 - 20),T1 (1U),1 U / 2 U
-´´´
+| Trama | Instante (U) | Tareas Ejecutadas | Cómputo Usado / f (2 U) |
+| :---: | :----------: | :---------------- | :---------------------: |
+|  F0   |   [0 - 2)    | T1 (1U) + T2 (1U) |        2 U / 2 U        |
+|  F1   |   [2 - 4)    | T1 (1U) + T3_1 (1U)|       2 U / 2 U        |
+|  F2   |   [4 - 6)    | T1 (1U) + T2 (1U) |        2 U / 2 U        |
+|  F3   |   [6 - 8)    | T1 (1U)           |        1 U / 2 U        |
+|  F4   |   [8 - 10)   | T1 (1U) + T2 (1U) |        2 U / 2 U        |
+|  F5   |   [10 - 12)  | T1 (1U)           |        1 U / 2 U        |
+|  F6   |   [12 - 14)  | T1 (1U) + T2 (1U) |        2 U / 2 U        |
+|  F7   |   [14 - 16)  | T1 (1U)           |        1 U / 2 U        |
+|  F8   |   [16 - 18)  | T1 (1U) + T2 (1U) |        2 U / 2 U        |
+|  F9   |   [18 - 20)  | T1 (1U)           |        1 U / 2 U        |
 ---
 
 ### Sistema 2
@@ -78,7 +77,16 @@ F9,[18 - 20),T1 (1U),1 U / 2 U
     * $T_3$: $2(6) - \gcd(18,6) = 12 - 6 = 6 \le 18$ *(Cumple)*.
 
 #### Diagrama de Gantt (Muestra Representativa F0 a F5)
-TramaInstante (U)Tareas EjecutadasCómputo Usado / f (6 U)F0[0  - 6)T1 (1U) + T2 (2U) + T3 (2U)5 U / 6 UF1[6  - 12)T1 (1U)1 U / 6 UF2[12 - 18)T1 (1U) + T2 (2U)3 U / 6 UF3[18 - 24)T1 (1U) + T3 (2U)3 U / 6 UF4[24 - 30)T1 (1U) + T2 (2U)3 U / 6 UF5[30 - 36)T1 (1U)1 U / 6 U......(Repite patrón armónico)...
+
+| Trama | Instante (U) | Tareas Ejecutadas | Cómputo Usado / f (6 U) |
+| :---: | :----------: | :---------------- | :---------------------: |
+|  F0   |   [0 - 6)    | T1 (1U) + T2 (2U) + T3 (2U) | 5 U / 6 U |
+|  F1   |   [6 - 12)   | T1 (1U)           |        1 U / 6 U        |
+|  F2   |   [12 - 18)  | T1 (1U) + T2 (2U) |        3 U / 6 U        |
+|  F3   |   [18 - 24)  | T1 (1U) + T3 (2U) |        3 U / 6 U        |
+|  F4   |   [24 - 30)  | T1 (1U) + T2 (2U) |        3 U / 6 U        |
+|  F5   |   [30 - 36)  | T1 (1U)           |        1 U / 6 U        |
+|  ...  |     ...      | *(Repite patrón armónico)* |   ...   |
 ---
 
 ### Sistema 3
@@ -92,20 +100,32 @@ TramaInstante (U)Tareas EjecutadasCómputo Usado / f (6 U)F0[0  - 6)T1 (1U) + T2
 | $T_4$ |     6     |       22        |       Baja        |
 
 #### Test de Garantía
-* **Factor de Utilización ($U$):** 
+* **Factor de Utilización ($U$):**
   $$U = \frac{1}{8} + \frac{3}{15} + \frac{4}{20} + \frac{6}{22} \approx 0.125 + 0.200 + 0.200 + 0.273 = 0.798 \quad (79.8\%) \le 1$$
-* **Hiperperíodo ($H$):** $\text{mcm}(8, 15, 20, 22) = 1320\text{ U} = 132000\text{ ms}$.
+
+* **Hiperperíodo ($H$):** 
+  $$H = \text{mcm}(8, 15, 20, 22) = 1320\text{ U} = 132000\text{ ms}$$
+
 * **Verificación del Tamaño de Trama ($f = 8\text{ U} = 800\text{ ms}$):**
-  * **Condición 1:** $f \ge C_i \rightarrow 8 \ge 6$. *(Cumple)*.
-  * **Condición 2:** $H \pmod f = 1320 \pmod 8 = 0$ (165 tramas por ciclo). *(Cumple)*.
-  * **Condición 3:**
-    * $T_2$ ($T_2=15$): $2(8) - \gcd(15,8) = 16 - 1 = 15 \le 15$ *(Cumple en el límite)*.
-    * $T_4$ ($T_4=22$): $2(8) - \gcd(22,8) = 16 - 2 = 14 \le 22$ *(Cumple)*.
+  * **Condición 1 ($f \ge C_i$):** 
+    $$f = 8 \ge \max(C_i) = 6 \quad \text{(Cumple)}$$
+  * **Condición 2 ($H \pmod f = 0$):** 
+    $$1320 \pmod 8 = 0 \quad \text{(Cumple: 165 tramas por ciclo)}$$
+  * **Condición 3 ($2f - \gcd(p_i, f) \le D_i$):**
+    * $T_1$ ($p_1=8$): $2(8) - \gcd(8,8) = 16 - 8 = 8 \le 8$ *(Cumple)*
+    * $T_2$ ($p_2=15$): $2(8) - \gcd(15,8) = 16 - 1 = 15 \le 15$ *(Cumple en el límite)*
+    * $T_3$ ($p_3=20$): $2(8) - \gcd(20,8) = 16 - 4 = 12 \le 20$ *(Cumple)*
+    * $T_4$ ($p_4=22$): $2(8) - \gcd(22,8) = 16 - 2 = 14 \le 22$ *(Cumple)*
 
 #### Estructura de Despacho (Patrón Reducido de 3 Tramas)
 Dada la magnitud de $H=1320$, en la práctica se sintetizó la ejecución mediante un ciclo modular `frame % 3` ($24\text{ U}$):
 
-TramaInstante (U)Tareas EjecutadasCómputo Usado / f (8 U)F0[0  - 8)T1 (1U) + T2 (3U) + T3 (4U)8 U / 8 UF1[8  - 16)T1 (1U) + T2 (3U) + T4 (4U)8 U / 8 U  (T4 Slice 1)F2[16 - 24)T1 (1U) + T4 (2U)3 U / 8 U  (T4 Slice 2)
+| Trama | Instante (U) | Tareas Ejecutadas | Cómputo Usado / f (8 U) |
+| :---: | :----------: | :---------------- | :---------------------: |
+|  F0   |   [0 - 8)    | T1 (1U) + T2 (3U) + T3 (4U) | 8 U / 8 U |
+|  F1   |   [8 - 16)   | T1 (1U) + T2 (3U) + T4 (4U) | 8 U / 8 U (T4 Slice 1) |
+|  F2   |   [16 - 24)  | T1 (1U) + T4 (2U)          | 3 U / 8 U (T4 Slice 2) |
+
 ---
 
 ### Sistema 4
@@ -131,7 +151,18 @@ TramaInstante (U)Tareas EjecutadasCómputo Usado / f (8 U)F0[0  - 8)T1 (1U) + T2
     * $T_4$: $2(3) - \gcd(24,3) = 6 - 3 = 3 \le 24$ *(Cumple)*.
 
 #### Diagrama de Gantt (Módulo Repetitivo de 8 Tramas / 24 U)
-TramaInstante (U)Tareas EjecutadasCómputo Usado / f (3 U)F0[0  - 3)T1 (0.5U) + T2 (1U)1.5 U / 3 UF1[3  - 6)T1 (0.5U) + T3 (2U)2.5 U / 3 UF2[6  - 9)T1 (0.5U) + T2 (1U)1.5 U / 3 UF3[9  - 12)T1 (0.5U) + T4_Slice1 (2U)2.5 U / 3 UF4[12 - 15)T1 (0.5U) + T2 (1U)1.5 U / 3 UF5[15 - 18)T1 (0.5U) + T4_Slice2 (2U)2.5 U / 3 UF6[18 - 21)T1 (0.5U) + T2 (1U)1.5 U / 3 UF7[21 - 24)T1 (0.5U) + T4_Slice3 (2U)2.5 U / 3 U
+
+| Trama | Instante (U) | Tareas Ejecutadas | Cómputo Usado / f (3 U) |
+| :---: | :----------: | :---------------- | :---------------------: |
+|  F0   |   [0 - 3)    | T1 (0.5U) + T2 (1U)        |       1.5 U / 3 U       |
+|  F1   |   [3 - 6)    | T1 (0.5U) + T3 (2U)        |       2.5 U / 3 U       |
+|  F2   |   [6 - 9)    | T1 (0.5U) + T2 (1U)        |       1.5 U / 3 U       |
+|  F3   |   [9 - 12)   | T1 (0.5U) + T4_Slice1 (2U) |       2.5 U / 3 U       |
+|  F4   |   [12 - 15)  | T1 (0.5U) + T2 (1U)        |       1.5 U / 3 U       |
+|  F5   |   [15 - 18)  | T1 (0.5U) + T4_Slice2 (2U) |       2.5 U / 3 U       |
+|  F6   |   [18 - 21)  | T1 (0.5U) + T2 (1U)        |       1.5 U / 3 U       |
+|  F7   |   [21 - 24)  | T1 (0.5U) + T4_Slice3 (2U) |       2.5 U / 3 U       |
+
 ---
 
 ## 3. Configuración de Tareas e Implementación en FreeRTOS
