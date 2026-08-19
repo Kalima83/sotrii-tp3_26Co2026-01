@@ -1,0 +1,5 @@
+../app/src/sistemas_tp3.c:9:6:T1_Job	8	static
+../app/src/sistemas_tp3.c:15:6:T1_Job_Half	8	static
+../app/src/sistemas_tp3.c:20:6:T2_Job	16	static
+../app/src/sistemas_tp3.c:25:6:T3_Job	16	static
+../app/src/sistemas_tp3.c:30:6:T4_Job	16	static

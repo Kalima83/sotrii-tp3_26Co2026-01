@@ -24,7 +24,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "app.h"
+#include "logger.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,7 +45,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+uint32_t g_task_idle_cnt = 0;
+uint32_t g_app_stack_overflow_cnt = 0;
+volatile uint32_t g_app_tick_cnt = 0;
 /* USER CODE END Variables */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -52,23 +55,32 @@
 
 /* USER CODE END FunctionPrototypes */
 
-/* GetIdleTaskMemory prototype (linked to static allocation support) */
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize );
-
-/* USER CODE BEGIN GET_IDLE_TASK_MEMORY */
-static StaticTask_t xIdleTaskTCBBuffer;
-static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
-
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize )
-{
-  *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-  *ppxIdleTaskStackBuffer = &xIdleStack[0];
-  *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
-  /* place for user code */
-}
-/* USER CODE END GET_IDLE_TASK_MEMORY */
-
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 
+void vApplicationIdleHook(void)
+{
+  /* Update Task Idle Counter */
+  g_task_idle_cnt++;
+}
+
+void vApplicationTickHook(void)
+{
+  /* Update Application Tick Counter */
+  g_app_tick_cnt++;
+}
+
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName)
+{
+  (void)xTask;
+  (void)pcTaskName;
+
+  g_app_stack_overflow_cnt++;
+  LOGGER_INFO("ERROR: Stack Overflow detectado en tarea: %s", pcTaskName);
+
+  taskDISABLE_INTERRUPTS();
+  for (;;);
+}
+
 /* USER CODE END Application */
+
