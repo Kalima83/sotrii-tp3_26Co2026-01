@@ -41,6 +41,7 @@ Las condiciones de diseño para el tamaño de trama ($f$) bajo un Ejecutivo Cíc
     * $T_3$: $2(2) - \gcd(20,2) = 4 - 2 = 2 \le 20$ *(Cumple)*.
 
 #### Diagrama de Gantt (Hiperperíodo: 10 Tramas de 2 U)
+´´´
 Trama,Instante (U),Tareas Ejecutadas,Cómputo Usado / f (2 U)
 F0,[0  - 2),T1 (1U) + T2 (1U),2 U / 2 U
 F1,[2  - 4),T1 (1U) + T3_1 (1U),2 U / 2 U
@@ -52,7 +53,7 @@ F6,[12 - 14),T1 (1U) + T2 (1U),2 U / 2 U
 F7,[14 - 16),T1 (1U),1 U / 2 U
 F8,[16 - 18),T1 (1U) + T2 (1U),2 U / 2 U
 F9,[18 - 20),T1 (1U),1 U / 2 U
-
+´´´
 ---
 
 ### Sistema 2
