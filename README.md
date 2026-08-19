@@ -9,5 +9,5 @@
 ### Responsable de la entrega 
 | N° SIU | Apellidos, Nombres | Fecha | Deadline |
 | :----- | :--------------------- | :------: | :-------: |
-| a2104 | Bazán, Daniel | 16/08/26| Semana 08 |
+| a2104 | Bazán, Daniel | 19/08/26| Semana 08 |
 
